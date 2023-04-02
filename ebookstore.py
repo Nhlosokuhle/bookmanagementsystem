@@ -135,7 +135,7 @@ def update_book():
         db = sqlite3.connect('ebookstore.db')
         # Get a cursor object
         cursor = db.cursor()
-        book_id = int(input('Enter the id of the book you want to update: '))
+        book_id = input('Enter the id of the book you want to update: ')
         book_id_list = get_book_id_data()
         if book_id in book_id_list:
             while True:
@@ -164,7 +164,7 @@ def update_book():
 
 def delete_book():
     """This function will allow the user to delete books from the database"""
-    book_id = int(input('\nEnter the book id of the book you want to delete: '))
+    book_id = input('\nEnter the book id of the book you want to delete: ')
     books_id_list = get_book_id_data()
     try:
         # Open a file called ebookstore.db
@@ -217,15 +217,25 @@ def search_book():
     input('\nPress ENTER to return to the main menu...')
 
 
+def generate_report():
+    number_of_books = get_book_id_data()
+    print(f"""
+*** REPORT ****
+Number of books: {len(number_of_books)}
+    """)
+    input('\nPress ENTER to return to the main menu...')
+
+
 create_table()
 while True:
     get_book_id_data()
     user_choice = input('''
 Please choose one of the following options:
-a - Add a book
-u - Update a book
-d - Delete a book
-s - Search a books
+e - Enter book
+u - Update book
+d - Delete book
+s - Search books
+v - view report
 c - Close the program 
 ---------> ''').lower()
     if user_choice == 'e':
@@ -238,6 +248,8 @@ c - Close the program
         delete_book()
     elif user_choice == 's':
         search_book()
+    elif user_choice == 'v':
+        generate_report()
     elif user_choice == 'c':
         print('Goodbye!')
         break
