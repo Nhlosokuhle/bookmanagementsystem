@@ -218,6 +218,8 @@ def search_book():
 
 
 def generate_report():
+    """This function will display the report to the user."""
+    
     number_of_books = get_book_id_data()
     print(f"""
 *** REPORT ****
